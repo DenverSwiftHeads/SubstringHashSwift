@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F20EC2E1CE7C6EB00D42991 /* HashUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F20EC2D1CE7C6EB00D42991 /* HashUtils.swift */; };
 		529D9ED21C83BE1A00414AE9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529D9ED11C83BE1A00414AE9 /* AppDelegate.swift */; };
 		529D9ED41C83BE1A00414AE9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529D9ED31C83BE1A00414AE9 /* ViewController.swift */; };
 		529D9ED71C83BE1A00414AE9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 529D9ED51C83BE1A00414AE9 /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F20EC2D1CE7C6EB00D42991 /* HashUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HashUtils.swift; sourceTree = "<group>"; };
 		529D9ECE1C83BE1A00414AE9 /* TrelloJobApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrelloJobApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		529D9ED11C83BE1A00414AE9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		529D9ED31C83BE1A00414AE9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				529D9ED81C83BE1A00414AE9 /* Assets.xcassets */,
 				529D9EDA1C83BE1A00414AE9 /* LaunchScreen.storyboard */,
 				529D9EDD1C83BE1A00414AE9 /* Info.plist */,
+				0F20EC2D1CE7C6EB00D42991 /* HashUtils.swift */,
 			);
 			path = TrelloJobApplication;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F20EC2E1CE7C6EB00D42991 /* HashUtils.swift in Sources */,
 				529D9ED41C83BE1A00414AE9 /* ViewController.swift in Sources */,
 				529D9ED21C83BE1A00414AE9 /* AppDelegate.swift in Sources */,
 			);
@@ -388,6 +392,7 @@
 				529D9EED1C83BE1A00414AE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		529D9EEE1C83BE1A00414AE9 /* Build configuration list for PBXNativeTarget "TrelloJobApplicationTests" */ = {
 			isa = XCConfigurationList;
@@ -396,6 +401,7 @@
 				529D9EF01C83BE1A00414AE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

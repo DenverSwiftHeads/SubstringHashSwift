@@ -10,14 +10,15 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
+    let ProblemHashKey = "acdegilmnoprstuw"
+    let DefaultHashNumber = 25377615533200
+    let DefaultWordLength = 8
+    
     // MARK: Properties
     @IBOutlet weak var hashNumberField: UITextField!
     @IBOutlet weak var stringLengthField: UITextField!
     @IBOutlet weak var answerLabel: UILabel!
     
-    let ProblemHashKey = "acdegilmnoprstuw"
-    let DefaultHashNumber = 25377615533200
-    let DefaultWordLength = 8
     var hashReverser: ((Int64) -> String)!
     
     override func viewDidLoad() {
@@ -63,62 +64,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func updateReverseHash() -> Void {
         let wordLength = Int(stringLengthField.text!) ?? DefaultWordLength
-        hashReverser = reverseHashGen(wordLength, hashKey: ProblemHashKey)
-    }
-    
-    // MARK: Hash Computations
-    
-    // Given a String, find its hash
-    func hash (inputString: String) ->Int64
-    {
-        var h:Int64 = 7
-        let letters:String = "acdegilmnoprstuw"
-        
-        for i in 0..<inputString.characters.count {
-            let inputStringIndex = inputString.startIndex.advancedBy(i);
-            
-            let inputStringChar = inputString[inputStringIndex]
-            let lettersIndex = letters.characters.indexOf(inputStringChar)
-            let position = letters.startIndex.distanceTo(lettersIndex!)
-            h = (h * 37 + position);
-        }
-        return h
-    }
-    
-    // Generate a reverse hash function given a word length and the hash key
-    func reverseHashGen(wordLength: Int, hashKey: String) -> (Int64) -> String {
-        return {[weak self] (hashie: Int64) -> String in
-            guard let strongSelf = self else { return "" }
-            return strongSelf.reverseHash(hashie, wordLength: wordLength, hashKey: hashKey)
-        }
-    }
-    
-    func reverseHash(hashie:Int64, wordLength:Int, hashKey: String) -> String
-    {
-        let remainders = computeRemainders(hashie, wordLength: wordLength)
-        let resultString = decodeRemainders(remainders, wordLength: wordLength, hashKey: hashKey)
-        return resultString
-    }
-    
-    func computeRemainders(hashie: Int64, wordLength: Int) -> [Int64] {
-        var remainders:[Int64] = [hashie]
-        for i in 1...wordLength {
-            remainders.append(remainders[i-1] / 37)
-        }
-        return remainders
-    }
-    
-    func decodeRemainders(remainders:[Int64], wordLength: Int, hashKey: String) -> String {
-        var resultString = ""
-        
-        for i in (0..<wordLength).reverse() {
-            let letterIndex = remainders[i] - (remainders[i+1] * 37)
-            let lettersStringIndex = hashKey.startIndex.advancedBy(Int(letterIndex));
-            
-            resultString.append(hashKey[lettersStringIndex])
-        }
-        
-        return resultString;
+        hashReverser = HashUtils.reverseHashGen(wordLength, hashKey: ProblemHashKey)
     }
 }
 
