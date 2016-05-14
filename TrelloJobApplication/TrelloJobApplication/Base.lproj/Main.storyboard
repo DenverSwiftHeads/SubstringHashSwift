@@ -34,6 +34,9 @@
                                                 <rect key="frame" x="0.0" y="24" width="138" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
+                                                <connections>
+                                                    <action selector="hashNumberChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="vr2-bU-wm5"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
