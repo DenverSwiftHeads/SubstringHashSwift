@@ -15,7 +15,7 @@ struct HashUtils {
     static func hash (inputString: String) -> Int64
     {
         var h:Int64 = 7
-        let letters:String = "acdegilmnoprstuw"
+        let letters:String = Constants.ProblemHashKey
         
         for i in 0..<inputString.characters.count {
             let inputStringIndex = inputString.startIndex.advancedBy(i);

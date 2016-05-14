@@ -9,21 +9,17 @@
 import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
-    
-    let DefaultHashNumber = 25377615533200
-    let DefaultWordLength = 8
-    
     // MARK: Properties
     @IBOutlet weak var hashNumberField: UITextField!
     @IBOutlet weak var stringLengthField: UITextField!
     @IBOutlet weak var answerLabel: UILabel!
     
-    var hashConfiguration: HashConfigurationModel!
-    var hashReverser: ((Int64) -> String)!
+    let viewModel = ReverseHashViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        resetToDefaults()
+        
+        reset()
     }
     
     // MARK: UITextFieldDelegate
@@ -35,46 +31,45 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Actions
     @IBAction func hashNumberChanged(sender: AnyObject) {
-        updateHashConfiguration()
+        //TODO: push parsing out to view model
+        let hashNumber: Int64 = Int64(hashNumberField.text!)!;
+        viewModel.hashNumberUpdated(hashNumber)
     }
     
     @IBAction func stringLengthChanged(sender: AnyObject) {
-        updateHashConfiguration()
+        //TODO: push parsing out to view model
+        let wordLength = Int(stringLengthField.text!) ?? Constants.DefaultWordLength
+        viewModel.wordLengthUpdated(wordLength)
     }
     
     @IBAction func calculateStringFromHash(sender: UIButton) {
-        let reverseHashValues = hashReverser(hashConfiguration.hashNumber)
-        answerLabel.text = reverseHashValues
-//        answerLabel.text            = reverseHashValues.calculatedString
-//        answerLabel.backgroundColor = reverseHashValues.background
+        let result = viewModel.reverseHashRequested()
+        updateWithResult(result)
     }
     
     @IBAction func resetToDefaultValues(sender: UIButton) {
-        resetToDefaults()
+        reset()
     }
     
     // MARK: View Helpers
-    func resetToDefaults() -> Void {
-        hashNumberField.text   = String(format: "%ld", DefaultHashNumber)
-        stringLengthField.text = String(format: "%d", DefaultWordLength)
-        answerLabel.text       = "<answer displayed here>"
-        answerLabel.backgroundColor = UIColor.clearColor()
-        
-        updateHashConfiguration()
+    func reset() -> Void {
+        let result = viewModel.reset()
+        updateWithResult(result)
     }
     
-    func updateHashConfiguration() -> Void {
-        let hashNumber: Int64 = Int64(hashNumberField.text!)!;
-        let wordLength = Int(stringLengthField.text!) ?? DefaultWordLength
-        let newConfiguration = HashConfigurationModel(hashNumber: hashNumber, wordLength: wordLength)
-        if newConfiguration != hashConfiguration {
-            hashConfiguration = newConfiguration
-            updateReverseHash()
+    func updateWithResult(result: ReverseHashResult) -> Void {
+        //TODO: these cases dont do anything different, we likely dont need an enum
+        switch result {
+        case .Error(let message, let color):
+            answerLabel.text = message
+            answerLabel.backgroundColor = color
+        case .NoResult(let message, let color):
+            answerLabel.text = message
+            answerLabel.backgroundColor = color
+        case .Success(let message, let color):
+            answerLabel.text = message
+            answerLabel.backgroundColor = color
         }
-    }
-    
-    func updateReverseHash() -> Void {
-        hashReverser = HashUtils.reverseHashGen(hashConfiguration.wordLength, hashKey: ProblemHashKey)
     }
 }
 

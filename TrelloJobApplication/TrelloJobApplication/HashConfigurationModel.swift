@@ -8,8 +8,6 @@
 
 import Foundation
 
-let ProblemHashKey = "acdegilmnoprstuw"
-
 struct HashConfigurationModel {
     let hashNumber: Int64
     let wordLength: Int
@@ -18,7 +16,7 @@ struct HashConfigurationModel {
     init(hashNumber: Int64, wordLength: Int, hashKey: String? = nil) {
         self.hashNumber = hashNumber
         self.wordLength = wordLength
-        self.hashKey = hashKey ?? ProblemHashKey
+        self.hashKey = hashKey ?? Constants.ProblemHashKey
     }
 }
 

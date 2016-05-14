@@ -36,6 +36,7 @@
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
                                                 <connections>
                                                     <action selector="hashNumberChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="vr2-bU-wm5"/>
+                                                    <outlet property="delegate" destination="BYZ-38-t0r" id="uZC-Pb-nym"/>
                                                 </connections>
                                             </textField>
                                         </subviews>
@@ -55,6 +56,7 @@
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
                                                 <connections>
                                                     <action selector="stringLengthChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="e9B-nG-8T5"/>
+                                                    <outlet property="delegate" destination="BYZ-38-t0r" id="pIv-uJ-b5y"/>
                                                 </connections>
                                             </textField>
                                         </subviews>
